@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="wrapper">
+    <form action="">
+        <h1>Sign Up</h1>
+        <div class="input-box">
+            <input type="text" placeholder="Email or Phone Number" required>
+        </div>
+        <div class="input-name">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Password" required>
+        </div>
+        <div class="input-box">
+            <input type="password" placeholder="Confirm your Password" required>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+
+        <div class="register-link">
+            <p>Already have an account?<a href="login.html"> Log in</a></p>
+        </div>
+    </form>
+</div>
+
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const signUpForm = document.querySelector("form");
+
+        signUpForm.addEventListener("submit", function (event) {
+            const emailOrPhone = signUpForm.querySelector('input[type="text"]');
+            const firstName = signUpForm.querySelector('input[name="first-name"]');
+            const lastName = signUpForm.querySelector('input[name="last-name"]');
+            const password = signUpForm.querySelector('input[type="password"]');
+            const confirmPassword = signUpForm.querySelector('input[name="confirm-password"]');
+
+            if (!isValidEmailOrPhone(emailOrPhone.value)) {
+                alert("Please enter a valid email or phone number.");
+                event.preventDefault();
+            } else if (!isValidName(firstName.value) || !isValidName(lastName.value)) {
+                alert("Please enter a valid first and last name.");
+                event.preventDefault();
+            } else if (password.value.length < 8) {
+                alert("Password should be at least 8 characters long.");
+                event.preventDefault();
+            } else if (password.value !== confirmPassword.value) {
+                alert("Passwords do not match.");
+                event.preventDefault();
+            }
+        });
+
+        function isValidEmailOrPhone(input) {
+            // Implement your own validation logic for email or phone number
+            // For simplicity, just checking if the input is not empty
+            return input.trim() !== "";
+        }
+
+        function isValidName(name) {
+            // Implement your own validation logic for names
+            // For simplicity, just checking if the name is not empty
+            return name.trim() !== "";
+        }
+    });
+</script>
+
+</html>
